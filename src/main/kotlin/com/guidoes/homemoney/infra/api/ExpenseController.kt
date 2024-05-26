@@ -2,6 +2,7 @@ package com.guidoes.homemoney.infra.api
 
 import com.guidoes.homemoney.application.service.ExpenseService
 import com.guidoes.homemoney.infra.api.request.CreateExpenseRequest
+import com.guidoes.homemoney.infra.api.request.CreateSharedExpenseRequest
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,6 +18,11 @@ class ExpenseController(
 
     @PostMapping
     fun save(@RequestBody request: CreateExpenseRequest) = expenseService.save(request)
+
+    @PostMapping("/shared")
+    fun createSharedExpense(
+        @RequestBody request: CreateSharedExpenseRequest
+    ) = expenseService.createSharedExpense(request)
 
     @GetMapping
     fun findAll() = expenseService.findAll()
