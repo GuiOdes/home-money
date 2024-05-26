@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Home Money
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/homemoney
+    username: root
+    password: root
