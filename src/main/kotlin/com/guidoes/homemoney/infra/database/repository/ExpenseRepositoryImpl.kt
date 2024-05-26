@@ -6,6 +6,7 @@ import com.guidoes.homemoney.infra.database.repository.jpa.ExpenseJpaRepository
 import com.guidoes.homemoney.infra.database.repository.jpa.UserJpaRepository
 import com.guidoes.homemoney.utils.converter.ExpenseConverter.toEntity
 import com.guidoes.homemoney.utils.converter.ExpenseConverter.toModel
+import com.guidoes.homemoney.utils.extension.removeOutdatedExpenses
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
@@ -23,7 +24,9 @@ class ExpenseRepositoryImpl(
     }
 
     override fun findAll(): List<Expense> {
-        return expenseJpaRepository.findAll().map { it.toModel() }
+        return expenseJpaRepository.findAll()
+            .removeOutdatedExpenses()
+            .map { it.toModel() }
     }
 
     override fun findAllByPeriod(userId: Long, daysBeforeToday: Int): List<Expense> {
@@ -31,6 +34,6 @@ class ExpenseRepositoryImpl(
 
         return expenseJpaRepository.findAllByCreationDateBetweenAndUserId(
             initialDate, LocalDateTime.now(), userId
-        ).map { it.toModel() }
+        ).removeOutdatedExpenses().map { it.toModel() }
     }
 }

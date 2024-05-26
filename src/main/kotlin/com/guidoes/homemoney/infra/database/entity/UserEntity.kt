@@ -9,7 +9,7 @@ import jakarta.persistence.OneToMany
 class UserEntity(
     @Id
     @GeneratedValue
-    val id: Long,
+    val id: Long? = null,
     val name: String,
 
     @OneToMany(mappedBy = "user")
