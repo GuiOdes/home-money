@@ -13,7 +13,7 @@ object ExpenseConverter {
         description = description,
         value = value,
         type = type,
-        recurrencePeriodInMonths = recurrencePeriodInMonths!!,
+        recurrencePeriodInMonths = recurrencePeriodInMonths,
         creationDate = creationDate
     )
 

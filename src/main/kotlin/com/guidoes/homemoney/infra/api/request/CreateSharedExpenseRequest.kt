@@ -7,7 +7,6 @@ data class CreateSharedExpenseRequest(
     val description: String,
     val value: BigDecimal,
     val type: ExpenseType,
-    val isRecurrence: Boolean,
     val recurrencePeriodInMonths: Int = 0,
     val users: List<ExpenseUserRequest>
 ) {
